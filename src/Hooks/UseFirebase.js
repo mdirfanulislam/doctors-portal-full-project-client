@@ -43,9 +43,9 @@ const useFirebase = () => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
+                setAuthError('');
                 const destination = location?.state?.from || '/';
                 history.replace(destination);
-                setAuthError('');
             })
             .catch((error) => {
                 setAuthError(error.message);
@@ -61,9 +61,11 @@ const useFirebase = () => {
                 setAuthError('');
                 const destination = location?.state?.from || '/';
                 history.replace(destination);
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 setAuthError(error.message);
-            }).finally(() => setIsLoading(false));
+            })
+            .finally(() => setIsLoading(false));
     }
 
     // observer user state
@@ -84,7 +86,7 @@ const useFirebase = () => {
     }, [auth]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://tranquil-mesa-75244.herokuapp.com/users/${user.email}`)
         .then(res => res.json())
         .then(data => setAdmin(data.admin));
     }, [user.email])
@@ -101,7 +103,7 @@ const useFirebase = () => {
 
     const saveUser = ( email, displayName, method ) => {
         const user = { email, displayName };
-        fetch('http://localhost:5000/users', {
+        fetch('https://tranquil-mesa-75244.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
