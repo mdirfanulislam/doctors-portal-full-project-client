@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Appointments = ({date}) => {
     const {user, token} = useAuth();
@@ -39,14 +41,18 @@ const Appointments = ({date}) => {
                     <TableBody>
                     {appointments.map((row) => (
                         <TableRow
-                        key={row._id}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                        <TableCell component="th" scope="row">
-                            {row.patientName}
-                        </TableCell>
-                        <TableCell align="right">{row.time}</TableCell>
-                        <TableCell align="right">{row.serviceName}</TableCell>
+                            key={row._id}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                            <TableCell component="th" scope="row">
+                                {row.patientName}
+                            </TableCell>
+                            <TableCell align="right">{row.time}</TableCell>
+                            <TableCell align="right">{row.serviceName}</TableCell>
+                            <TableCell align="right">{row.payment ?
+                                'Paid' :
+                                <Link style={{ textDecoration: 'none' }} to={`/dashboard/payment/${row._id}`}><Button>Pay</Button></Link>
+                            }</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

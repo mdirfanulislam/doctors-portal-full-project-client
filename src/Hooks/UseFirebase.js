@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile,getIdToken, signOut } from "firebase/auth";
 import initializeAuthentication from './../Pages/Login/Login/Firebase/FirebaseInit';
 
-// initialize firebase app
+// initialize firebase app [   :y?B{h:8fdUPj2F   ]
 initializeAuthentication();
 
 const useFirebase = () => {
@@ -74,9 +74,9 @@ const useFirebase = () => {
             if (user) {
                 setUser(user);
                 getIdToken(user)
-                .then(idToken => {
-                    setToken(idToken)
-                })
+                    .then(idToken => {
+                        setToken(idToken);
+                    })
             } else {
                 setUser({})
             }
