@@ -12,8 +12,8 @@ const Doctors = () => {
     }, [])
 
     return (
-        <div>
-            <h2>Our Doctors: {doctors.length} </h2>
+        <div style={{ marginTop: '80px' }}>
+            <h2 style={{ color: '#0d6efd' }}>Our Doctors: {doctors.length} </h2>
             <Container>
                 <Grid container spacing={2}>
                     {

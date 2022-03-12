@@ -25,7 +25,6 @@ const AddDoctor = () => {
         .then(data => {
             if(data.insertedId){
                 setSuccess('Doctor added successfully')
-                console.log('Doctor added successfully');
             }
         })
         .catch(error => {

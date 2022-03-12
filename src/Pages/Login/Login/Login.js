@@ -6,6 +6,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const Login = () => {
+    
     const [loginData, setLoginData] = useState({});
     const { user, loginUser, signInWithGoogle, isLoading, authError } = useAuth();
 
@@ -27,6 +28,7 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle(location, navigate)
     }
+
     return (
         <Container>
             <Grid container spacing={2}>

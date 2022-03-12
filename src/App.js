@@ -16,6 +16,8 @@ import AddDoctor from './Pages/Dashboard/AddDoctor/AddDoctor';
 import DashboardHome from './Pages/Dashboard/DashboardHome/DashboardHome';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin/MakeAdmin';
 import Payment from './Pages/Dashboard/Payment/Payment';
+import Footer from './Pages/Shared/Footer/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -31,13 +33,13 @@ function App() {
                 <Dashboard />
               </PrivateRoute>}>
                 
-                <Route path="/dashboard" element={<DashboardHome></DashboardHome>} />
+              <Route path="/dashboard" element={<DashboardHome></DashboardHome>} />
                 
-                <Route path={`/dashboard/payment/:appointmentId`} element={<Payment></Payment>} />
+              <Route path={`/dashboard/payment/:appointmentId`} element={<Payment></Payment>} />
                   
-                <Route path={`/dashboard/makeAdmin`} element={<AdminRoute><MakeAdmin  ></MakeAdmin></AdminRoute>} />
+              <Route path={`/dashboard/makeAdmin`} element={<AdminRoute><MakeAdmin></MakeAdmin></AdminRoute>} />
                   
-                <Route path={`/dashboard/addDoctor`} element={<AdminRoute><AddDoctor></AddDoctor></AdminRoute>} />
+              <Route path={`/dashboard/addDoctor`} element={<AdminRoute><AddDoctor></AddDoctor></AdminRoute>} />
               </Route>
                 
               <Route path="/" element={<Home />} />
@@ -47,8 +49,9 @@ function App() {
               <Route path="/login" element={<Login />} />
                 
               <Route path="/register" element={<Register />} />
-                
+              
             </Routes>
+            <Footer />
         </Router>
       </AuthProvider>
     </div>

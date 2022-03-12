@@ -6,12 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
-// import List from '@mui/material/List';
-// import ListItem from '@mui/material/ListItem';
-// import ListItemIcon from '@mui/material/ListItemIcon';
-// import ListItemText from '@mui/material/ListItemText';
-// import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -21,8 +15,11 @@ import {
   Outlet,
 } from "react-router-dom";
 import useAuth from './../../../Hooks/useAuth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar, faGripHorizontal, faHome, faUserMd, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const drawerWidth = 200;
+const drawerHeight = 300;
 
 function Dashboard(props) {
   const { window } = props;
@@ -37,23 +34,14 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
-      <Link to="/home" style={{ textDecoration: 'none' }}><Button color="inherit">Home Page</Button></Link>
-      <Link to="/appointment" style={{ textDecoration: 'none' }}><Button color="inherit" sx={{ marginBlock: "10px" }}>Appointment</Button></Link>
-      <Link to="/dashboard" style={{ textDecoration: 'none' }}><Button color="inherit">Dashboard</Button></Link>
+      <Link to="/home" style={{ textDecoration: 'none' }}><Button color="inherit"> <FontAwesomeIcon icon={faHome} /> Home Page</Button></Link>
+      <Link to="/appointment" style={{ textDecoration: 'none' }}><Button color="inherit" sx={{ marginBlock: "10px" }}> <FontAwesomeIcon icon={faCalendar} /> Appointment</Button></Link>
+      <Link to="/dashboard" style={{ textDecoration: 'none' }}><Button color="inherit"> <FontAwesomeIcon icon={faGripHorizontal} /> Dashboard</Button></Link>
       {admin && <Box>
-        <Link to={`/dashboard/makeAdmin`} style={{ textDecoration: 'none' }}><Button sx={{marginBlock: "10px"}}color="inherit">Make Admin</Button></Link>
-        <Link to={`/dashboard/addDoctor`} style={{ textDecoration: 'none' }}><Button    color="inherit">Add Doctor</Button></Link>
+        <Link to={`/dashboard/makeAdmin`} style={{ textDecoration: 'none' }}><Button sx={{marginBlock: "10px"}}color="inherit"> <FontAwesomeIcon icon={faUserPlus
+        } /> Make Admin</Button></Link>
+        <Link to={`/dashboard/addDoctor`} style={{ textDecoration: 'none' }}><Button    color="inherit"> <FontAwesomeIcon icon={faUserMd} />Add Doctor</Button></Link>
         </Box>}
-      {/* <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
     </div>
   );
 
@@ -65,7 +53,7 @@ function Dashboard(props) {
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: { lg: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
       >
@@ -75,7 +63,7 @@ function Dashboard(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { lg: 'none', md: 'block', sm: 'block' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -86,7 +74,7 @@ function Dashboard(props) {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{ width: { lg: drawerWidth }, height: { sm: drawerHeight }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
         <Drawer
@@ -95,20 +83,20 @@ function Dashboard(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'},
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,  height: drawerHeight },
           }}
         >
           {drawer}
         </Drawer>
         <Drawer
-          variant="permanent"
+          variant="persistent"
           sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: 'none', sm: 'none', md: 'none', lg: 'block'},
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, height: drawerHeight },
           }}
           open
         >

@@ -1,0 +1,15 @@
+.footer-section{
+    margin-top: 50px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    background-color: #297fff;
+}
+
+.icon{
+    margin: 15px;
+    font-size: 35px;
+    color: #00c3ff;
+    border: 2px solid #00c3ff;
+    border-radius: 20px;
+    cursor: pointer;
+}

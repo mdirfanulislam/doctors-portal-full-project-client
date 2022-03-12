@@ -29,7 +29,7 @@ const Appointments = ({date}) => {
         <div>
             <h2>Appointments: {appointments.length} </h2>
             <TableContainer component={Paper}>
-                <Table sx={{}} aria-label="simple table">
+                <Table aria-label="simple table">
                     <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
